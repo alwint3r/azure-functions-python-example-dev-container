@@ -1,0 +1,29 @@
+{
+    "name": "Azure Functions Python Dev Container",
+    "forwardPorts": [
+        7071
+    ],
+    "build": {
+        "dockerfile": "Dockerfile",
+        "context": "..",
+        "args": {
+            "HOST_GID": "1000",
+            "HOST_UID": "1000"
+        }
+    },
+    "customizations": {
+        "vscode": {
+            "settings": {
+                "terminal.integrated.defaultProfile.linux": "bash"
+            },
+            "extensions": [
+                "ms-azuretools.vscode-azurefunctions",
+                "ms-python.python",
+                "ms-python.vscode-pylance"
+            ]
+        }
+    },
+    "workspaceMount": "source=${localWorkspaceFolder},target=/home/site/wwwroot,type=bind,consistency=cached",
+    "workspaceFolder": "/home/site/wwwroot",
+    "postCreateCommand": "pip install -r requirements.txt || true"
+}
